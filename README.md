@@ -17,4 +17,5 @@ mv i3-config ~/.config/i3/config
 mv i3status.conf ~/.config/i3status/i3status.conf
 mv polybar-config ~/.config/polybar/config
 mv launch.sh ~/.config/polybar/launch.sh
+echo 'setxkbmap -model pc105 -layout us,ru -option grp:win_space_toggle' >> .bashrc
 ```

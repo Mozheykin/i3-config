@@ -113,7 +113,7 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:  Terminal"
 set $ws2 "2:  Firefox"
-set $ws3 "3:  VScode"
+set $ws3 "3:  Developer"
 set $ws4 "4:  Spotify"
 set $ws5 "5:  Joplin"
 set $ws6 "6"
@@ -182,8 +182,9 @@ bindsym $mod+r mode "resize"
 
 #Colors
 set $bgcolor #404040
-set $ibgcolor #202020
-set $textcolor #F5F0F5
+set $mainbgcolor #008000
+set $ibgcolor #00008B
+set $textcolor #00FF00
 set $itextcolor #A8A5A8
 set $ubgcolor #ff0000
 
@@ -201,14 +202,14 @@ bar {
             background $bgcolor
             separator #282828
             #                         border        background         text
-            focused_workspace         $bgcolor      $bgcolor           $textcolor   
-            inactive_workspace     $ibgcolor     $ibgcolor          $itextcolor
+            focused_workspace         $mainbgcolor  $mainbgcolor       $itextcolor   
+            inactive_workspace        $ibgcolor     $ibgcolor          $itextcolor
             urgent_workspace          $ubgcolor     $ubgcolor          $textcolor
         }
 }
 
 #wallpaper
-exec_always feh --bg-fill /home/legal/Изображения/wallpaper/wall1.jpg
+exec_always feh --bg-fill /home/legal/Downloads/4K\ KDE\ Plasma\ Abstract\ 345\ NO\ LOGO.png
 
 #terminal compton
 exec_always --no-startup-id compton

@@ -19,3 +19,4 @@ mv polybar-config ~/.config/polybar/config
 mv launch.sh ~/.config/polybar/launch.sh
 echo 'setxkbmap -model pc105 -layout us,ru -option grp:win_space_toggle' >> .bashrc
 ```
+Polybar themes `https://github.com/adi1090x/polybar-themes`

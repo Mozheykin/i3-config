@@ -30,13 +30,16 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #33482B7D 
+background = #482B7D 
 background-alt = #337168E9 
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
 primary = #ffb52a
-;secondary = #e60053
+secondary = #c518ff
+normal = #3df308 
+bad = #f32108
+info = #f3de08
 ;alert = #bd2c40
 
 [bar/example]
@@ -45,20 +48,20 @@ width = 100%
 height = 20
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 3.0
+radius = 5.0
 fixed-center = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 1
-line-color = #f00
+line-size = 2
+line-color = #c518ff
 
 border-size = 1 
 border-color = #00000000
 
-padding-left = 0
-padding-right = 0 
+padding-left = 2
+padding-right = 2 
 
 module-margin-left = 1
 module-margin-right = 1 
@@ -78,7 +81,7 @@ modules-left = i3
 modules-center = xwindow
 modules-right =  usdrate btcrate memory cpu wlan eth battery temperature date 
 
-;separator = "|"
+separator = "|"
 tray-position = right
 tray-padding = 2
 tray-background = #0063ff
@@ -100,6 +103,7 @@ cursor-scroll = ns-resize
 [module/usdrate]
 type = custom/script
 exec = $HOME/.config/polybar/scripts/currencyrates.py usd rub
+exec-foreground = %{colors.info}
 interval=600
 click-left = firefox --new-window "https://freecurrencyrates.com/en/exchange-rate-history/USD-RUB/2022/cbr"
 click-right = firefox --new-window "https://freecurrencyrates.com/en/convert-USD-RUB/cbr"
@@ -114,6 +118,7 @@ click-right = firefox --new-window "https://freecurrencyrates.com/en/convert-EUR
 [module/btcrate]
 format = <label>
 label = %output%
+label-foreground = %{colors.info}
 type = custom/script
 exec = $HOME/.config/polybar/scripts/currencyrates.py btc usd
 interval=600
@@ -123,6 +128,7 @@ click-right = firefox --new-window "https://freecurrencyrates.com/en/convert-BTC
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
+label-foreground = ${colors.info}
 
 ;[module/xkeyboard]
 ;type = internal/xkeyboard
@@ -144,14 +150,7 @@ mount-0 = /
 ;mount-1 = /home
 label-mounted =  %mountpoint% free: %percentage_free%%
 label-mounted-padding = 1
-
-;[module/filesystem]
-;type = internal/fs
-;interval = 25
-;mount-0 = /
-;label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-;label-unmounted = %mountpoint% not mounted
-;label-unmounted-foreground = ${colors.foreground-alt}
+label-mounted-foreground = %{colors.info}
 
 [module/bspwm]
 type = internal/bspwm
@@ -203,7 +202,7 @@ label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %index% %icon%
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused-underline= ${colors.secondary}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
@@ -271,14 +270,24 @@ ramp-load-4 = ▅
 ramp-load-5 = ▆
 ramp-load-6 = ▇
 ramp-load-7 = █
+ramp-load-0-foreground = ${colors.normal}
+ramp-load-1-foreground = ${colors.normal}
+ramp-load-2-foreground = ${colors.normal}
+ramp-load-3-foreground = ${colors.normal}
+ramp-load-4-foreground = ${colors.normal}
+ramp-load-5-foreground = ${colors.bad}
+ramp-load-6-foreground = ${colors.bad}
+ramp-load-7-foreground = ${colors.bad}
 type = internal/cpu
 interval = 2
 label = " %percentage:2:2%%"
+label-foreground = ${colors.info}
 
 [module/memory]
 type = internal/memory
 interval = 2
 label = " %percentage_used%%"
+label-foreground = ${colors.info}
 format = <label> <ramp-used>
 ramp-used-0 = ▁
 ramp-used-1 = ▂
@@ -288,22 +297,14 @@ ramp-used-4 = ▅
 ramp-used-5 = ▆
 ramp-used-6 = ▇
 ramp-used-7 = █
-
-;[module/cpu]
-;type = internal/cpu
-;interval = 2
-;format-prefix = " "
-;format-prefix-foreground = ${colors.foreground-alt}
-;;format-underline = #f90000
-;label = CPU %percentage:2%%
-
-;[module/memory]
-;type = internal/memory
-;interval = 2
-;format-prefix = " "
-;format-prefix-foreground = ${colors.foreground-alt}
-;;format-underline = #4bffdc
-;label = RAM %percentage_used%%
+ramp-used-0-foreground = ${colors.normal}
+ramp-used-1-foreground = ${colors.normal}
+ramp-used-2-foreground = ${colors.normal}
+ramp-used-3-foreground = ${colors.normal}
+ramp-used-4-foreground = ${colors.normal}
+ramp-used-5-foreground = ${colors.bad}
+ramp-used-6-foreground = ${colors.bad}
+ramp-used-7-foreground = ${colors.bad}
 
 [module/wlan]
 type = internal/network
@@ -313,26 +314,9 @@ format-connected-padding = 1
 format-disconnected-padding = 1
 format-connected = <label-connected>
 label-connected = %essid%
+label-connected-foreground = ${colors.normal}
 label-disconnected = 
-
-;[module/wlan]
-;type = internal/network
-;interface = wlp2s0 
-;interval = 3.0
-;format-connected = <ramp-signal> <label-connected>
-;format-connected-underline = #9f78e1
-;label-connected = %essid%
-;format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-;ramp-signal-0 = 
-;ramp-signal-1 = 
-;ramp-signal-2 = 
-;ramp-signal-3 = 
-;ramp-signal-4 = 
-;ramp-signal-foreground = ${colors.foreground-alt}
+label-disconnected-foreground = ${colors.bad}
 
 [module/eth]
 type = internal/network
@@ -350,18 +334,6 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-;[module/date]
-;type = internal/date
-;interval = 5
-;date =
-;date-alt = " %Y-%m-%d"
-;time = %H:%M
-;time-alt = %H:%M:%S
-;format-prefix = 
-;format-prefix-foreground = ${colors.foreground-alt}
-;;format-underline = #0a6cf5
-;label = %date% %time%
-
 [module/date]
 type = internal/date
 interval = 1
@@ -370,6 +342,8 @@ time =  %d/%m| %H:%M
 format-prefix-foreground = ${colors.foreground-alt}
 label = %time%
 format = %{A1:zenity --calendar:} <label> %{A}
+format-foreground = ${colors.info}
+
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -426,33 +400,6 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
-;[module/battery]
-;type = internal/battery
-;battery = BAT0
-;adapter = AC
-;full-at = 98
-;format-charging = <animation-charging> <label-charging>
-;format-charging-underline = #ffb52a
-;format-discharging = <animation-discharging> <label-discharging>
-;format-discharging-underline = ${self.format-charging-underline}
-;format-full-prefix = " "
-;format-full-prefix-foreground = ${colors.foreground-alt}
-;format-full-underline = ${self.format-charging-underline}
-;ramp-capacity-0 = 
-;ramp-capacity-1 = 
-;ramp-capacity-2 = 
-;ramp-capacity-foreground = ${colors.foreground-alt}
-;animation-charging-0 = 
-;animation-charging-1 = 
-;animation-charging-2 = 
-;animation-charging-foreground = ${colors.foreground-alt}
-;animation-charging-framerate = 750
-;animation-discharging-0 = 
-;animation-discharging-1 = 
-;animation-discharging-2 = 
-;animation-discharging-foreground = ${colors.foreground-alt}
-;animation-discharging-framerate = 750
-
 [module/battery]
 type = internal/battery
 battery = BAT1
@@ -462,12 +409,15 @@ full-at = 98
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = ${colors.green}
 format-charging-padding = 1
+format-charging-foreground = ${colors.normal}
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${colors.yellow}
 format-discharging-padding = 1
+format-discharging-foreground = ${colors.bad}
 
 format-full =   <label-full>
+format-full-foreground = ${colors.normal}
 format-full-underline = ${self.format-charging-underline}
 format-full-overline = ${self.format-charging-underline}
 format-full-padding = 1
@@ -475,14 +425,12 @@ format-full-padding = 1
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.white}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-foreground = ${colors.white}
 animation-charging-framerate = 500
 
 [module/temperature]
@@ -490,14 +438,16 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-format = <ramp> <label>
+format = <ramp> <label>
 ;format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
+format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label =  %temperature-c%
+label-foreground = ${colors.normal}
+label-warn =  %temperature-c%
+label-warn-foreground = ${colors.bad}
+
 
 ramp-0 = 
 ramp-1 = 

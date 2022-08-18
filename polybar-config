@@ -30,16 +30,17 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #482B7D 
-background-alt = #337168E9 
+background = #355030CE
+background-alt = #343434
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #ffb52a
-secondary = #c518ff
+foreground = #be2596
+foreground-alt = #FFFFFF
+primary = #231E68
+secondary = #343434
 normal = #3df308 
 bad = #f32108
-info = #f3de08
+;info = #f3de08
+info = #92cbdf
 ;alert = #bd2c40
 
 [bar/example]
@@ -55,7 +56,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 2
-line-color = #c518ff
+line-color = #AA624B
 
 border-size = 1 
 border-color = #00000000
@@ -79,7 +80,7 @@ font-4 = unifont:size=10;3
 
 modules-left = i3
 modules-center = xwindow
-modules-right =  usdrate btcrate memory cpu wlan eth battery temperature date 
+modules-right =  pulseaudio memory cpu wlan eth battery temperature date 
 
 separator = "|"
 tray-position = right

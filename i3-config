@@ -339,7 +339,7 @@ client.urgent             $ubgcolor     $ubgcolor          $textcolor  $ubgcolor
 #}
 
 #wallpaper
-exec_always feh --bg-fill /home/legal/Downloads/4K\ KDE\ Plasma\ Abstract\ 345\ NO\ LOGO.png
+exec_always feh --bg-fill /home/legal/Downloads/wallpaper.jpg
 
 #terminal compton
 exec_always --no-startup-id compton
@@ -353,6 +353,7 @@ exec --no-startup-id setxkbmap -model pc105 -layout us,ru -option grp:win_space_
 
 # start app
 bindsym $alt+ctrl+a exec /bin/TogglDesktop.sh
+bindsym $alt+ctrl+o exec /bin/obsidian
 bindsym $alt+ctrl+j exec /home/legal/.joplin/Joplin.AppImage
 bindsym $alt+ctrl+s exec spotify
 bindsym $alt+ctrl+c exec code
@@ -366,6 +367,7 @@ for_window [class="firefox"] move to workspace $ws2
 for_window [class="Code"] move to workspace $ws3
 for_window [class="Spotify"] move to workspace $ws4
 for_window [class="Joplin"] move to workspace $ws5
+for_window [class="Obsidian"] move to workspace $ws5
 for_window [class="Toggl Desktop"] move to workspace $ws9
 
 #Display settings

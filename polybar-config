@@ -30,17 +30,17 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #355030CE
-background-alt = #343434
+background = #2a2624
+background-alt = #b76a2d
 ;foreground = ${xrdb:color7:#222}
-foreground = #be2596
-foreground-alt = #FFFFFF
+foreground = #dddcdb
+foreground-alt = #514b47
 primary = #231E68
 secondary = #343434
 normal = #3df308 
 bad = #f32108
 ;info = #f3de08
-info = #92cbdf
+info = #b76a2d
 ;alert = #bd2c40
 
 [bar/example]

@@ -311,9 +311,9 @@ mode "$mode_gaps_left" {
 
 
 #Colors
-set $bgcolor #404040
-set $mainbgcolor #008000
-set $ibgcolor #00008B
+set $bgcolor #b76a2d
+set $mainbgcolor #514b47
+set $ibgcolor #8b8682
 set $textcolor #00FF00
 set $itextcolor #A8A5A8
 set $ubgcolor #ff0000
@@ -375,3 +375,6 @@ exec_always /home/legal/.screenlayout/legalPc.sh
 
 #window compositor
 exec_always picom -f
+
+#keyboard settings Keychron
+exec_always echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
